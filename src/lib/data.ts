@@ -1,14 +1,14 @@
-import { FaJava } from "react-icons/fa";
+import { FaJava, FaReact, FaNodeJs, FaAws } from "react-icons/fa";
 import {
-  SiCplusplus,
+  SiJavascript,
+  SiTypescript,
   SiPython,
-  SiMysql,
   SiPostgresql,
+  SiMongodb,
   SiSpringboot,
-  SiDotnet,
+  SiTailwindcss,
 } from "react-icons/si";
-import { Code, Database, Palette, Terminal } from "lucide-react"; // Lucide icons
-import { TbBrandCSharp } from "react-icons/tb";
+import { Terminal } from "lucide-react"; // Lucide icons
 import { IconType } from "react-icons";
 import { LucideIcon } from "lucide-react";
 
@@ -34,7 +34,7 @@ export const experienceMetrics: ExperienceMetric[] = [
   },
   {
     label: "Clients",
-    value: 4,
+    value: 5,
     suffix: "+",
     srLabel: "Clients served",
   },
@@ -118,23 +118,30 @@ export type Skill = {
 };
 
 // --------------------
-// Manual Skills
+// Essential Skills Only
 // --------------------
 export const manualSkills: Skill[] = [
-  { name: "Java", level: 80, icon: FaJava },
-  { name: "C++", level: 75, icon: SiCplusplus },
-  { name: "C#", level: 75, icon: TbBrandCSharp },
-  { name: "Python", level: 70, icon: SiPython },
+  // Core Programming Languages
+  { name: "JavaScript", level: 95, icon: SiJavascript },
+  { name: "TypeScript", level: 85, icon: SiTypescript },
+  { name: "Java", level: 90, icon: FaJava },
+  { name: "Python", level: 80, icon: SiPython },
+
+  // Frontend & UI
+  { name: "React.js", level: 90, icon: FaReact },
+  { name: "Tailwind CSS", level: 85, icon: SiTailwindcss },
+
+  // Backend & APIs
+  { name: "Node.js", level: 85, icon: FaNodeJs },
   { name: "Spring Boot", level: 80, icon: SiSpringboot },
-  { name: ".NET", level: 75, icon: SiDotnet },
-  { name: "React", level: 90, icon: Code },
-  { name: "JavaScript", level: 95, icon: Code },
-  { name: "TypeScript", level: 85, icon: Code },
-  { name: "MySQL", level: 85, icon: SiMysql },
-  { name: "PostgreSQL", level: 80, icon: SiPostgresql },
-  { name: "JDBC", level: 75, icon: Database },
-  { name: "REST API", level: 80, icon: Terminal },
-  { name: "UI/UX Design", level: 80, icon: Palette },
+  { name: "REST API", level: 85, icon: Terminal },
+
+  // Databases
+  { name: "PostgreSQL", level: 85, icon: SiPostgresql },
+  { name: "MongoDB", level: 80, icon: SiMongodb },
+
+  // Cloud & DevOps
+  { name: "AWS", level: 70, icon: FaAws },
 ];
 
 export const skills = manualSkills;
