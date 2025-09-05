@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import profileImage from "@/assets/profile.jpg";
+import profileImage from "../../../public/profile.jpg";
 import { AnimatedNumber } from "./animated-number";
 import { experienceMetrics } from "@/lib/data";
 
