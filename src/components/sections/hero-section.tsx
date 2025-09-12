@@ -97,6 +97,16 @@ const HeroSection: React.FC = () => {
             <Button size="lg" variant="outline" asChild>
               <a href="#contact">Get In Touch</a>
             </Button>
+            <Button size="lg" variant="outline" asChild>
+              <a
+                href="https://drive.google.com/uc?export=download&id=1Yam4QebFF8mQSnjVuNa0C5obVCy03bkA"
+                download="Bhawar_Gujral_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Download Resume
+              </a>
+            </Button>
           </motion.div>
         </motion.div>
 

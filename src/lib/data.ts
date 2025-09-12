@@ -61,7 +61,7 @@ export const projects: Project[] = [
     title: "School Management System",
     description:
       "APNA SCHOOL is a complete school management solution designed to simplify administration, improve communication, and enhance the student learning experience.",
-    image: "./projectDemo.svg",
+    image: "./SchoolManagementSystem.svg",
     tags: ["React", "Node.js", "MongoDB", "Stripe"],
     github: "https://github.com",
     demo: "https://example.com",

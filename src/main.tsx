@@ -10,12 +10,7 @@ import Footer from "@/components/layout/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 
 createRoot(document.getElementById("root")!).render(
-  <ThemeProvider
-    // attribute="class"
-    // defaultTheme="system"
-    // enableSystem
-    // disableTransitionOnChange
-  >
+  <ThemeProvider>
     <div className="flex min-h-screen flex-col">
       <Navbar />
       <main className="min-h-screen">
