@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import "@/index.css";
+import "./index.css";
 import HeroSection from "@/components/sections/hero-section";
 import AboutSection from "@/components/sections/about-section";
 import ProjectsSection from "@/components/sections/projects-section";
