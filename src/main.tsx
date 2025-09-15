@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import "./index.css";
+import "@/index.css";
 import HeroSection from "@/components/sections/hero-section";
 import AboutSection from "@/components/sections/about-section";
 import ProjectsSection from "@/components/sections/projects-section";
@@ -11,10 +11,10 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 createRoot(document.getElementById("root")!).render(
   <ThemeProvider
-    // attribute="class"
-    // defaultTheme="system"
-    // enableSystem
-    // disableTransitionOnChange
+  // attribute="class"
+  // defaultTheme="system"
+  // enableSystem
+  // disableTransitionOnChange
   >
     <div className="flex min-h-screen flex-col">
       <Navbar />
