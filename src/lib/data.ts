@@ -105,7 +105,7 @@ export const projects: Project[] = [
     title: "Twitter Spring Boot Clone",
     description:
       "TwitterSpring is a Java-based web application built with the Spring Boot framework that emulates core functionalities of Twitter, including user management and tweet posting. The project demonstrates a clean architecture with layered separation of concerns, utilizing Spring Data JPA for database interactions and RESTful controllers for API endpoints. It features entity modeling for users, tweets, and addresses, and provides a robust foundation for scalable social media applications. This project highlights my proficiency in modern Java development, REST API design, and enterprise application structuring, making it an excellent showcase of my backend engineering skills.",
-    image: "/portfolio/src/assets/TwitterSpring.svg",
+    image: "/portfolio/TwitterSpring.svg",
     tags: [
       "Java",
       "Spring Boot",
@@ -122,7 +122,7 @@ export const projects: Project[] = [
     title: "MovieRating.io",
     description:
       "It is an iOS application designed to help users discover, search, and manage their favorite movies with ease. Featuring a clean and intuitive interface, the app allows users to browse trending films, search for specific titles, and curate a personalized list of favorites. Leveraging Core Data for persistent storage and custom table and collection views for a rich user experience, It demonstrates strong architectural organization and modern Swift development practices, making it a robust showcase of mobile app design and functionality.",
-    image: "/portfolio/src/assets/MovieRating.svg",
+    image: "/portfolio/MovieRating.svg",
     tags: ["Swift", "iOS", "Core Data", "API", "MVVM", "JSON"],
     github: "https://github.com/BhawarGujral/MovieRating.io",
     demo: "https://vimeo.com/1118405057?share=copy#t=0",
@@ -132,7 +132,7 @@ export const projects: Project[] = [
     title: "Emotion Detector Application",
     description:
       "Emotion Detector is an Android application designed to analyze and recognize facial expressions in real time. Built with modern Android development practices, the app leverages advanced image processing and machine learning techniques to accurately detect a range of human emotions from camera input.",
-    image: "/portfolio/src/assets/EmotionDetector.svg",
+    image: "/portfolio/EmotionDetector.svg",
     tags: [
       "Java",
       "Android",
@@ -149,7 +149,7 @@ export const projects: Project[] = [
     title: "Flappy Bird Game",
     description:
       "It is a clone of the popular Flappy Bird game built with Java 7 and JavaFX. It stores the user high scores locally using file I/O operations. It also have the feature to control the speed of the bird. Gave me a hands-on experience with JavaFX and event-driven programming.",
-    image: "/portfolio/src/assets/FlappyBird.svg",
+    image: "/portfolio/FlappyBird.svg",
     tags: ["Java", "JavaFX", "Java Swing"],
     github: "https://github.com/BhawarGujral/FlappyBird",
     demo: "https://vimeo.com/1118386921?share=copy#t=0",
@@ -159,7 +159,7 @@ export const projects: Project[] = [
     title: "School Management System",
     description:
       "It is a complete school management solution designed to simplify administration, improve communication, and enhance the student learning experience. It has features like calendar generation, attendance tracking, and grade management for both teachers and students while only admin can add new students and teachers. All this data is stored in a OracleDB which is connected using JDBC. It also include games like tic tac toe and bagels to make learning fun for students.",
-    image: "/portfolio/src/assets/SchoolManagementSystem.svg",
+    image: "/portfolio/SchoolManagementSystem.svg",
     tags: ["Java 8", "OracleDB", "JDBC"],
     github: "https://github.com/BhawarGujral/Apna-School",
     demo: "https://docs.google.com/presentation/d/1FFrv-56V24nG4mABR2khXp3iMF79IsNZ/edit?usp=sharing&ouid=103501319821404535178&rtpof=true&sd=true",
@@ -169,7 +169,7 @@ export const projects: Project[] = [
     title: "Weather Application",
     description:
       "The Weather App is as native Android application that provides users with real-time weather updates and forecasts in a straightforward, functional interface. While the app reliably delivers accurate, location-based weather information such as temperature, humidity, and atmospheric conditions, its UI/UX is intentionally kept simple and minimalistic, focusing on core functionality rather than advanced design elements. This project highlights skills in Android app development, API integration, and Gradle-based build automation, serving as a solid demonstration of technical proficiency in mobile application development, even though the user interface is basic.",
-    image: "/portfolio/src/assets/WeatherApp.svg",
+    image: "/portfolio/WeatherApp.svg",
     tags: ["Java", "Android", "openWeatherMap API", "JSON Parsing"],
     github: "https://github.com/BhawarGujral/weather-app",
     demo: "https://vimeo.com/1118386526?share=copy#t=0",
