@@ -62,7 +62,7 @@ export const projects: Project[] = [
     title: "E-commerce Mobile Applications",
     description:
       "It is associated with my internship at HRX-Connect. This Application is built using React Native for frontend and Firebase, AWS for backend. It had a seamless user experience for both vendors and users. It features user authentication using firebase, product browsing, shopping cart, Stripe payments for checkout,and order management functionalities.",
-    image: "/portfolio/src/assets/EcomMobileApp.svg",
+    image: "/portfolio/EcomMobileApp.svg",
     tags: [
       "TypeScript",
       "React Native",
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     title: "Expense Manager",
     description:
       "It is a android application built using Kotlin, Android UI and with the Backend built using Springboot framework and Postgresql database. It helps users to manage their daily expenses by adding, updating and deleting expenses. It also provides a graphical representation of the expenses using charts and graphs. It also let users to add friends and share expenses with them. It also provides authentication and authorization using JWT tokens. Backend is deployed on Railways using a free tier account. Give me a hands-on-experience with springboot and JWT token generation.",
-    image: "/portfolio/src/assets/ExpenseManager.svg",
+    image: "/portfolio/ExpenseManager.svg",
     tags: ["Kotlin", "Springboot", "Postgresql", "JWT", "REST API", "Railways"],
     demo: "https://vimeo.com/1123028426?share=copy",
   },
@@ -88,7 +88,7 @@ export const projects: Project[] = [
     title: "Smart Home Manager",
     description:
       "This project is a Spring Boot-based Home User Service application designed to manage users, devices, and automation features for a smart home system. It provides RESTful APIs and web interfaces for user registration, authentication, device management, and notification handling. The application follows a modular structure with separate packages for configuration, controllers, models, repositories, and services. It uses Thymeleaf templates for the frontend and supports both admin and user dashboards. The project is built with Maven and includes resources for static content and templates to deliver a complete smart home management experience.",
-    image: "/portfolio/src/assets/SmartHomeManager.svg",
+    image: "/portfolio/SmartHomeManager.svg",
     tags: [
       "Java",
       "Spring Boot",
