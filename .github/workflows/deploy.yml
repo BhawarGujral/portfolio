@@ -1,29 +1,82 @@
-name: Deploy to GitHub Pages
+name: Test, build and deploy
 
+# Every push (any branch) and every pull request into main runs the tests and
+# builds the site. Only a push to main that passes all of that is deployed to
+# bhawargujral.com, and it deploys the exact build that was tested.
 on:
   push:
-    branches:
-      - main
+    branches: ["**"]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write # the deploy step pushes the built site to the gh-pages branch
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # Newer pushes to a branch replace older runs, but never cut a deploy short.
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
-  build-and-deploy:
+  test:
+    name: Tests and build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Check out the code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # The servers need Node 22.13+ (built-in SQLite); the phone runs Node 24.
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            server/chat/package-lock.json
+            server/guestbook/package-lock.json
 
-      - name: Install dependencies
+      - name: Install the site's dependencies
         run: npm ci
 
-      - name: Build
+      - name: Lint
+        run: npx eslint src
+
+      - name: Type-check and build the site
         run: npm run build
 
-      - name: Deploy to GitHub Pages
+      - name: Chat server tests
+        working-directory: server/chat
+        run: |
+          npm ci
+          npm test
+
+      - name: Guestbook server tests
+        working-directory: server/guestbook
+        run: |
+          npm ci
+          npm test
+
+      - name: Keep the built site for the deploy job
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: dist
+          retention-days: 7
+
+  deploy:
+    name: Deploy to bhawargujral.com
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the tested build
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: dist
+
+      - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
