@@ -7,6 +7,7 @@ import SkillsSection from "@/components/sections/skills-section";
 import ContactSection from "@/components/sections/contact-section";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
+import ChatWidget from "@/components/chat/chat-widget";
 import { ThemeProvider } from "@/components/theme-provider";
 
 createRoot(document.getElementById("root")!).render(
@@ -26,6 +27,7 @@ createRoot(document.getElementById("root")!).render(
         <ContactSection />
       </main>
       <Footer />
+      <ChatWidget />
     </div>
   </ThemeProvider>
 );
