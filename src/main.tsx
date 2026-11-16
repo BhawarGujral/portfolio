@@ -4,6 +4,7 @@ import HeroSection from "@/components/sections/hero-section";
 import AboutSection from "@/components/sections/about-section";
 import ProjectsSection from "@/components/sections/projects-section";
 import SkillsSection from "@/components/sections/skills-section";
+import GuestbookSection from "@/components/sections/guestbook-section";
 import ContactSection from "@/components/sections/contact-section";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
@@ -24,6 +25,7 @@ createRoot(document.getElementById("root")!).render(
         <AboutSection />
         <ProjectsSection />
         <SkillsSection />
+        <GuestbookSection />
         <ContactSection />
       </main>
       <Footer />
