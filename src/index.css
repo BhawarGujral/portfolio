@@ -127,4 +127,12 @@
   body {
     @apply bg-background text-foreground;
   }
+  /* The hero's floating shapes and slide-in animations reach past the right
+     edge. Clip them so phones don't widen the page (which pushed the navbar's
+     menu button and the chat window off-screen). `clip` keeps sticky/fixed
+     positioning working, unlike `hidden`. */
+  html,
+  body {
+    overflow-x: clip;
+  }
 }

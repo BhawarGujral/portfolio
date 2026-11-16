@@ -1,0 +1,5 @@
+node_modules
+
+# The real knowledge file (personal story + the bot's rules) lives only on the
+# phone and on Bhawar's computer. The repo has a template instead.
+knowledge/about-bhawar.md

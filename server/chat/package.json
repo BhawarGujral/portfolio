@@ -1,0 +1,18 @@
+{
+  "name": "portfolio-chat-gateway",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chat gateway that sits between the public internet and llama-server running on a phone.",
+  "type": "module",
+  "scripts": {
+    "start": "node src/main.js",
+    "chats": "node src/chats-cli.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "dependencies": {
+    "obscenity": "^0.4.6"
+  }
+}
