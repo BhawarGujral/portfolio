@@ -2,9 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./src/assets/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bhawar Gujral</title>
+    <title>Bhawar Gujral · Full-stack developer in Toronto</title>
+    <meta
+      name="description"
+      content="Bhawar Gujral is a full-stack developer in Toronto who builds Java and Spring Boot backends and React and Angular frontends."
+    />
+    <meta property="og:title" content="Bhawar Gujral · Full-stack developer in Toronto" />
+    <meta
+      property="og:description"
+      content="Full-stack developer in Toronto: Java, Spring Boot, React and Angular. Experience, projects, and a guestbook to sign."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bhawargujral.com/" />
+    <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1b1916" media="(prefers-color-scheme: dark)" />
+    <script>
+      // Pick the theme before the first paint so dark-mode visitors don't see a white flash.
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || (t !== "light" && matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.classList.add("dark");
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

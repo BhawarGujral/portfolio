@@ -1,14 +1,20 @@
+// Keep this a <footer>: the chat launcher shrinks while it's on screen.
 export default function Footer() {
   return (
-    <footer className="bg-muted py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="mb-1">
-          <strong>
-            Keep Creating. The best is yet to come!
-          </strong>
-        </div>
-        <p className="text-muted-foreground">
-          © {new Date().getFullYear()} Portfolio. All rights reserved.
+    <footer className="border-t">
+      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-10 text-sm sm:px-8 md:flex-row md:items-center md:justify-between">
+        <p className="flex items-center gap-2">
+          <span className="size-1.5 rounded-full bg-brand" aria-hidden="true" />
+          Designed and built by Bhawar in Toronto
+        </p>
+        <p className="font-mono text-xs text-muted-foreground">
+          React · TypeScript · Tailwind. The chat runs on my spare Pixel 7, just for fun.
+        </p>
+        <p className="flex items-center gap-4 text-muted-foreground">
+          <span>© {new Date().getFullYear()} Bhawar Gujral</span>
+          <a href="#home" className="text-foreground underline-offset-4 hover:underline">
+            Back to top
+          </a>
         </p>
       </div>
     </footer>

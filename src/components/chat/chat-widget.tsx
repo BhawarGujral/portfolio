@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import { fetchSuggestions } from "@/lib/pixel-chat";
 import { usePixelChat } from "@/hooks/use-pixel-chat";
 import { usePixelStatus, STATE_LABEL } from "@/hooks/use-pixel-status";
+import { publishPixel } from "@/lib/pixel-store";
+import { PIXEL_OPEN_EVENT, type PixelOpenDetail } from "@/lib/pixel-events";
 import { StatusDot } from "./status-dot";
 import { ChatPanel } from "./chat-panel";
 
@@ -74,6 +76,23 @@ export default function ChatWidget() {
     setFlag(NUDGE_KEY);
   }, []);
   const closeChat = useCallback(() => setOpen(false), []);
+
+  // Share the phone's status with the rest of the page (hero card, footer).
+  useEffect(() => publishPixel({ status, state }), [status, state]);
+
+  // Buttons elsewhere on the page open the chat, optionally with a question
+  // typed in for the visitor (never sent for them).
+  const busyRef = useRef(chat.busy);
+  busyRef.current = chat.busy;
+  useEffect(() => {
+    const onOpen = (e: Event) => {
+      const prompt = (e as CustomEvent<PixelOpenDetail>).detail?.prompt;
+      openChat();
+      if (prompt && !busyRef.current) setDraft(prompt);
+    };
+    window.addEventListener(PIXEL_OPEN_EVENT, onOpen);
+    return () => window.removeEventListener(PIXEL_OPEN_EVENT, onOpen);
+  }, [openChat]);
 
   // Starter questions from the phone, with the "how does this work" one first.
   useEffect(() => {

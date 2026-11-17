@@ -1,132 +1,89 @@
+import { motion } from "motion/react";
+import { ArrowDown, Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
-import { Typewriter } from "react-simple-typewriter";
+import { HeroPhotos } from "@/components/sections/hero-photos";
+import { EASE_OUT } from "@/lib/motion";
+import { links } from "@/lib/data";
 
-const HeroSection: React.FC = () => {
-  const scrollTo = (section: string) => {
-    const aboutSection = document.querySelector("#" + section);
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
+export default function HeroSection() {
   return (
-    <section
-      id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
-    >
-      {/* Background animation */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-background to-background/50" />
-        <div className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-primary/5 to-transparent" />
-        <div className="absolute inset-0">
-          {Array.from({ length: 20 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute rounded-full bg-primary/10 dark:bg-primary/5"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                width: `${Math.random() * 100 + 50}px`,
-                height: `${Math.random() * 100 + 50}px`,
-              }}
-              animate={{
-                y: [0, Math.random() * 100 - 50],
-                opacity: [0.1, 0.3, 0.1],
-              }}
-              transition={{
-                duration: Math.random() * 10 + 10,
-                repeat: Number.POSITIVE_INFINITY,
-                repeatType: "reverse",
-              }}
-            />
-          ))}
-        </div>
-      </div>
+    <section id="home" className="relative isolate overflow-hidden">
+      {/* dot grid, fading out from the top right */}
+      <div
+        className="dot-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_70%_30%,black,transparent_70%)]"
+        aria-hidden="true"
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-            <span className="block">Hello, I'm</span>
-            <motion.span
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-              className="text-primary inline-block"
-            >
-              <Typewriter
-                words={[
-                  "Bhawar Gujral",
-                  "Full-Stack Developer",
-                  "Problem Solver",
-                  "Tech Enthusiast",
-                  "Innovative Thinker",
-                ]}
-                loop={Infinity}
-                cursor
-                cursorStyle="_"
-                typeSpeed={80}
-                deleteSpeed={50}
-                delaySpeed={1500}
-              />
-            </motion.span>
+      <div className="mx-auto grid min-h-[100svh] max-w-6xl items-center gap-12 px-5 pt-28 pb-16 sm:px-8 lg:grid-cols-[1.25fr_0.75fr]">
+        <div className="min-w-0">
+          {/* The headline is visible on first paint (no fade) so it isn't held back. */}
+          <h1>
+            <span className="mb-5 flex items-center gap-2 font-mono text-xs tracking-[0.14em] text-muted-foreground uppercase">
+              <span className="size-1.5 rounded-full bg-brand" aria-hidden="true" />
+              Bhawar Gujral · <span className="hidden sm:inline">Full-stack developer · </span>Toronto
+            </span>
+            <span className="block text-[clamp(2.5rem,7vw,5rem)] leading-[0.98] font-bold tracking-[-0.03em] text-balance">
+              <span className="block">Hi, I'm Bhawar.</span>I build software{" "}
+              <span className="bg-[linear-gradient(var(--brand),var(--brand))] bg-[length:100%_0.18em] bg-[position:0_92%] bg-no-repeat box-decoration-clone">
+                end to end.
+              </span>
+            </span>
           </h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto mb-8"
-          >
-            Transforming ideas into reality with <strong>elegant code</strong>{" "}
-            and <strong>cutting-edge technologies</strong>
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <Button size="lg" onClick={() => scrollTo("projects")}>
-              Explore Projects
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <a href="#contact">Get In Touch</a>
-            </Button>
-          </motion.div>
-        </motion.div>
+          <p className="mt-6 max-w-xl text-lg text-muted-foreground sm:text-xl">
+            Full-stack developer in Toronto, working on banking systems with Java, Spring Boot, React and Angular.
+            Off the clock I'm traveling, listening to podcasts, or building something new with AI.
+          </p>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-        >
           <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{
-              duration: 1.5,
-              repeat: Number.POSITIVE_INFINITY,
-              repeatType: "loop",
-            }}
+            className="mt-9 flex flex-wrap items-center gap-3"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15, ease: EASE_OUT }}
           >
             <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => scrollTo("about")}
-              className="rounded-full"
+              size="lg"
+              className="h-11 rounded-full bg-brand px-6 text-brand-foreground hover:bg-brand/90"
+              asChild
             >
-              <ArrowDown className="h-6 w-6" />
+              <a href="#projects">See my work</a>
             </Button>
+            <Button size="lg" variant="outline" className="h-11 rounded-full px-6" asChild>
+              <a href="#contact">Get in touch</a>
+            </Button>
+            <div className="flex items-center gap-1">
+              <Button variant="ghost" size="icon" className="size-11 rounded-full" asChild>
+                <a href={links.github} target="_blank" rel="noreferrer" aria-label="GitHub">
+                  <Github className="size-5" />
+                </a>
+              </Button>
+              <Button variant="ghost" size="icon" className="size-11 rounded-full" asChild>
+                <a href={links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                  <Linkedin className="size-5" />
+                </a>
+              </Button>
+            </div>
           </motion.div>
+        </div>
+
+        <motion.div
+          className="relative mx-auto w-full max-w-[420px] min-w-0"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: EASE_OUT }}
+        >
+          {/* a marigold card peeking out behind the photo */}
+          <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-[2rem] bg-brand" aria-hidden="true" />
+          <HeroPhotos />
         </motion.div>
       </div>
+
+      <a
+        href="#about"
+        aria-label="Scroll to About"
+        className="absolute bottom-6 left-1/2 hidden size-10 -translate-x-1/2 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground lg:flex"
+      >
+        <ArrowDown className="size-5 motion-safe:animate-bounce" />
+      </a>
     </section>
   );
-};
-
-export default HeroSection;
+}

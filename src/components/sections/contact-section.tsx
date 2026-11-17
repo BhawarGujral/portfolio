@@ -1,96 +1,78 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { useEffect, useState } from "react";
+import { motion } from "motion/react";
+import { Check, Copy, Github, Linkedin } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { reveal } from "@/lib/motion";
+import { links } from "@/lib/data";
 
-const ContactSection: React.FC = () => {
+export default function ContactSection() {
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!copied) return;
+    const t = setTimeout(() => setCopied(false), 2000);
+    return () => clearTimeout(t);
+  }, [copied]);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(links.email);
+      setCopied(true);
+    } catch {
+      // Clipboard blocked: the visible address is still selectable.
+    }
+  };
+
   return (
-    <section id="contact" className="">
+    <section id="contact">
       <div className="section-container">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="section-title"
+        <motion.div
+          {...reveal}
+          className="relative isolate overflow-hidden rounded-3xl border bg-card px-6 py-12 text-center sm:px-14 sm:py-16"
         >
-          Get In Touch
-        </motion.h2>
+          <div
+            className="dot-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_50%_0%,black,transparent_75%)]"
+            aria-hidden="true"
+          />
+          <p className="flex items-center justify-center gap-2 font-mono text-xs tracking-[0.14em] text-muted-foreground uppercase">
+            <span className="size-1.5 rounded-full bg-brand" aria-hidden="true" />
+            06 / Contact
+          </p>
+          <h2 className="mt-4 text-[clamp(1.875rem,4vw,3rem)] leading-tight font-semibold tracking-[-0.02em]">
+            Let's build something.
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
+            I'm open to new opportunities and collaborations. Email is the fastest way to reach me, or say hi on
+            LinkedIn.
+          </p>
 
-        <div className="max-w-2xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="flex flex-col justify-center"
+          <a
+            href={`mailto:${links.email}`}
+            className="mt-8 inline-block text-xl font-semibold break-all underline decoration-brand decoration-2 underline-offset-[6px] transition-colors hover:text-brand-ink sm:text-3xl"
           >
-            <div className="space-y-8">
-              <div className="text-center">
-                <p className="text-muted-foreground mb-6">
-                  Feel free to reach out to me through any of the following
-                  channels. I'm always open to discussing new projects,
-                  opportunities, or just having a chat.
-                </p>
-              </div>
+            {links.email}
+          </a>
 
-              <div className="space-y-4">
-                <ContactItem
-                  icon={<Mail className="h-6 w-6 text-primary" />}
-                  label="Email"
-                  link="mailto:bhawar.gujral@example.com"
-                  text="bhawarworkspace@gmail.com"
-                />
-                <ContactItem
-                  icon={<Linkedin className="h-6 w-6 text-primary" />}
-                  label="LinkedIn"
-                  link="https://www.linkedin.com/in/bhawargujral/"
-                  text="linkedin.com/in/bhawargujral"
-                />
-                <ContactItem
-                  icon={<Github className="h-6 w-6 text-primary" />}
-                  label="GitHub"
-                  link="https://github.com/BhawarGujral"
-                  text="github.com/BhawarGujral"
-                />
-              </div>
-            </div>
-          </motion.div>
-        </div>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Button variant="outline" className="h-10 rounded-full px-4" onClick={copyEmail}>
+              {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
+              <span aria-live="polite">{copied ? "Copied" : "Copy email"}</span>
+            </Button>
+            <Button variant="outline" className="h-10 rounded-full px-4" asChild>
+              <a href={links.linkedin} target="_blank" rel="noreferrer">
+                <Linkedin aria-hidden="true" />
+                LinkedIn
+              </a>
+            </Button>
+            <Button variant="outline" className="h-10 rounded-full px-4" asChild>
+              <a href={links.github} target="_blank" rel="noreferrer">
+                <Github aria-hidden="true" />
+                GitHub
+              </a>
+            </Button>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
-};
-
-// Contact Item Component for better reusability
-interface ContactItemProps {
-  icon: React.ReactNode;
-  label: string;
-  link: string;
-  text: string;
 }
-
-const ContactItem: React.FC<ContactItemProps> = ({
-  icon,
-  label,
-  link,
-  text,
-}) => {
-  return (
-    <div className="flex items-center gap-4">
-      <div className="bg-primary/10 p-3 rounded-full">{icon}</div>
-      <div>
-        <h4 className="font-medium">{label}</h4>
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-muted-foreground hover:text-primary transition-colors"
-        >
-          {text}
-        </a>
-      </div>
-    </div>
-  );
-};
-
-export default ContactSection;

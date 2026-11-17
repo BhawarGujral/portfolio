@@ -1,51 +1,23 @@
-import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "@/components/theme-provider";
+import { cn } from "@/lib/utils";
 
-export function ThemeToggle() {
-  const [theme, setTheme] = useState(
-    () => localStorage.getItem("theme") || "system"
-  );
-
-  useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+// Reads the theme from ThemeProvider. (It used to keep its own copy, which made
+// the first click do nothing for visitors whose system was in dark mode.)
+export function ThemeToggle({ className }: { className?: string }) {
+  const { theme, toggleTheme } = useTheme();
+  const dark = theme === "dark";
 
   return (
     <Button
       variant="outline"
       size="icon"
-      className="rounded-full"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      className={cn("rounded-full", className)}
+      onClick={toggleTheme}
+      aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
     >
-      {theme === "dark" ? (
-        <Sun
-          className={`h-[1.2rem] w-[1.2rem] transition-all rotate-90 scale-0"`}
-        />
-      ) : (
-        <Moon
-          className={`absolute h-[1.2rem] w-[1.2rem] transition-all "rotate-90 scale-0"`}
-        />
-      )}
+      {dark ? <Sun className="size-[1.1rem]" /> : <Moon className="size-[1.1rem]" />}
     </Button>
-    // <DropdownMenu>
-    //   <DropdownMenuTrigger asChild>
-    //     <Button variant="outline" size="icon" className="rounded-full">
-    //       <Sun className={`h-[1.2rem] w-[1.2rem] transition-all ${theme === "dark" ? "rotate-90 scale-0" : "rotate-0 scale-100"}`} />
-    //       <Moon className={`absolute h-[1.2rem] w-[1.2rem] transition-all ${theme === "dark" ? "rotate-0 scale-100" : "rotate-90 scale-0"}`} />
-    //       <span className="sr-only">Toggle theme</span>
-    //     </Button>
-    //   </DropdownMenuTrigger>
-    //   <DropdownMenuContent align="end">
-    //     <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
-    //     <DropdownMenuItem onClick={() => setTheme("dark")}>Dark</DropdownMenuItem>
-    //     <DropdownMenuItem onClick={() => setTheme("system")}>System</DropdownMenuItem>
-    //   </DropdownMenuContent>
-    // </DropdownMenu>
   );
 }

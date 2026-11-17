@@ -1,7 +1,10 @@
 import { createRoot } from "react-dom/client";
+import { MotionConfig } from "motion/react";
+import "@fontsource-variable/bricolage-grotesque";
 import "./index.css";
 import HeroSection from "@/components/sections/hero-section";
 import AboutSection from "@/components/sections/about-section";
+import ExperienceSection from "@/components/sections/experience-section";
 import ProjectsSection from "@/components/sections/projects-section";
 import SkillsSection from "@/components/sections/skills-section";
 import GuestbookSection from "@/components/sections/guestbook-section";
@@ -12,24 +15,22 @@ import ChatWidget from "@/components/chat/chat-widget";
 import { ThemeProvider } from "@/components/theme-provider";
 
 createRoot(document.getElementById("root")!).render(
-  <ThemeProvider
-  // attribute="class"
-  // defaultTheme="system"
-  // enableSystem
-  // disableTransitionOnChange
-  >
-    <div className="flex min-h-screen flex-col">
-      <Navbar />
-      <main className="min-h-screen">
-        <HeroSection />
-        <AboutSection />
-        <ProjectsSection />
-        <SkillsSection />
-        <GuestbookSection />
-        <ContactSection />
-      </main>
-      <Footer />
-      <ChatWidget />
-    </div>
-  </ThemeProvider>
+  <ThemeProvider>
+    <MotionConfig reducedMotion="user">
+      <div className="flex min-h-screen flex-col">
+        <Navbar />
+        <main className="flex-1">
+          <HeroSection />
+          <AboutSection />
+          <ExperienceSection />
+          <ProjectsSection />
+          <SkillsSection />
+          <GuestbookSection />
+          <ContactSection />
+        </main>
+        <Footer />
+        <ChatWidget />
+      </div>
+    </MotionConfig>
+  </ThemeProvider>,
 );

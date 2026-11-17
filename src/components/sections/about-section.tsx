@@ -1,102 +1,130 @@
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import profileImage from "@/assets/profile.jpg";
-import { AnimatedNumber } from "./animated-number";
-import { experienceMetrics } from "@/lib/data";
+import { motion } from "motion/react";
+import { Headphones, Sparkles, Video } from "lucide-react";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { ChipList, MonoLabel, Tile } from "@/components/ui/tile";
+import { RouteLine } from "@/components/ui/route-line";
+import { revealAt } from "@/lib/motion";
+import { certifications, experience, projects, travel } from "@/lib/data";
 
-const AboutSection: React.FC = () => {  
+const MotionTile = motion.create(Tile);
+
+const now = [
+  { label: "based in", value: "Toronto, Canada" },
+  { label: "working on", value: "Banking systems at TCS" },
+  { label: "learning", value: "Building AI apps and agents" },
+  { label: "side project", value: "A chatbot on my spare Pixel 7" },
+  { label: "speaks", value: "English and Hindi" },
+];
+
+const numbers = [
+  { value: "2022", label: "writing code professionally since" },
+  { value: String(experience.length), label: "roles, India to Toronto" },
+  { value: String(projects.length + 1), label: "personal projects" },
+  { value: String(certifications.length), label: "certifications" },
+];
+
+export default function AboutSection() {
   return (
-    <section id="about" className="bg-muted/50">
+    <section id="about">
       <div className="section-container">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="section-title"
-        >
-          About Me
-        </motion.h2>
+        <SectionHeading index="01" label="About" title="The short version" />
 
-        <Card className="border-none bg-transparent shadow-none">
-          <CardContent className="p-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className="relative aspect-square max-w-md mx-auto"
-              >
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-primary/20 to-primary/5 -z-10 transform rotate-3" />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-bl from-primary/20 to-primary/5 -z-10 transform -rotate-3" />
-                <div className="relative h-full w-full overflow-hidden rounded-xl border">
-                  <img
-                    src={profileImage}
-                    alt="Profile"
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className="space-y-6"
-              >
-              <h3 className="text-2xl font-bold">Solving Problems, Not Just Writing Code</h3>
-                <div className="space-y-4 text-muted-foreground">
-                  <p>
-                    Hi! I'm a software developer who thrives on solving complex
-                    problems and building efficient, scalable solutions. I work
-                    with multiple programming languages and technologies,
-                    adapting to whatever best suits the project.
-                  </p>
-                  <p>
-                    My main focus is on problem-solving, Technology is just a
-                    tool to get the job done. Whether it's backend architecture,
-                    frontend design, or full-stack development, I strive to
-                    create impactful and high-performing applications.
-                  </p>
-                  <p>
-                    When I'm not coding, I'm exploring new challenges,
-                    contributing to open-source projects, or refining my skills
-                    in different tech stacks. Always open to new opportunities
-                    and collaborations that push the boundaries of innovation.
-                  </p>
-                </div>
-
-                {/* Experience Metrics Grid */}
-                <dl
-                  aria-label="Experience metrics"
-                  className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6 pt-6"
-                >
-                  {experienceMetrics.map((metric) => (
-                    <div
-                      key={metric.label}
-                      className="rounded-lg border bg-card p-4 md:p-6"
-                    >
-                      <dt className="sr-only">{metric.srLabel}</dt>
-                      <dd className="flex flex-col">
-                        <span className="text-sm text-muted-foreground">{metric.label}</span>
-                        <AnimatedNumber
-                          value={metric.value}
-                          suffix={metric.suffix}
-                          className="text-3xl font-semibold md:text-4xl"
-                        />
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </motion.div>
+        <div className="grid gap-4 lg:grid-cols-6">
+          <MotionTile {...revealAt(0)} className="lg:col-span-4">
+            <div className="space-y-4 text-lg leading-relaxed text-muted-foreground [&_strong]:font-semibold [&_strong]:text-foreground">
+              <p>
+                I'm a <strong>full-stack developer in Toronto</strong>. Most days that means Java and Spring Boot
+                services with React or Angular on top, lately on banking systems where testing, security and
+                performance aren't optional.
+              </p>
+              <p>
+                I grew up in <strong>Ludhiana, Punjab</strong>, and started out as a Java developer there. In 2023 I
+                left that job to study in Canada. It was a real gamble, and it paid off when I landed my first
+                developer role here.
+              </p>
+              <p>
+                I used to be the quiet one in the room. These days I deliberately pick the thing that makes me a
+                little nervous, whether that's <strong>moving across the world</strong> or putting my work out
+                there online.
+              </p>
             </div>
-          </CardContent>
-        </Card>
+          </MotionTile>
+
+          <MotionTile {...revealAt(1)} className="flex flex-col lg:col-span-2 lg:row-span-2">
+            <MonoLabel>right now</MonoLabel>
+            <dl className="mt-5 flex flex-1 flex-col justify-between gap-4">
+              {now.map((row) => (
+                <div key={row.label} className="border-t border-dashed pt-3">
+                  <dt className="font-mono text-[11px] tracking-[0.08em] text-muted-foreground uppercase">{row.label}</dt>
+                  <dd className="mt-0.5 font-medium">{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </MotionTile>
+
+          <MotionTile {...revealAt(2)} className="flex flex-col lg:col-span-2">
+            <MonoLabel>the route so far</MonoLabel>
+            <div className="flex flex-1 items-center py-4">
+              <RouteLine
+                title="From Ludhiana, through the 2023 move, to Toronto"
+                width={300}
+                height={110}
+                points={[
+                  { x: 28, y: 70, label: "Ludhiana", sub: "Punjab", labelAt: "below" },
+                  { x: 150, y: 34, label: "2023", sub: "the leap", labelAt: "above" },
+                  { x: 272, y: 70, label: "Toronto", sub: "now", labelAt: "below", filled: true },
+                ]}
+              />
+            </div>
+            <p className="text-sm text-muted-foreground">One big move so far, about 11,350 km.</p>
+          </MotionTile>
+
+          <MotionTile {...revealAt(3)} className="lg:col-span-2">
+            <Sparkles className="size-5 text-brand-ink" aria-hidden="true" />
+            <h3 className="mt-4 text-lg font-semibold">AI-first, hands on the keyboard</h3>
+            <p className="mt-2 text-muted-foreground">
+              GitHub Copilot and Claude Code are part of my daily loop. I'm collecting AI certifications, and I still
+              read every diff.
+            </p>
+          </MotionTile>
+
+          <MotionTile {...revealAt(4)} className="lg:col-span-2">
+            <MonoLabel>on the map this year</MonoLabel>
+            <ChipList items={travel.thisYear} className="mt-3" />
+            <MonoLabel className="mt-5">next</MonoLabel>
+            <ChipList items={travel.next} className="mt-3" chipClassName="border-dashed border-foreground/30" />
+          </MotionTile>
+
+          <MotionTile {...revealAt(5)} className="lg:col-span-2">
+            <Headphones className="size-5 text-brand-ink" aria-hidden="true" />
+            <h3 className="mt-4 text-lg font-semibold">Podcasts over books</h3>
+            <p className="mt-2 text-muted-foreground">
+              Productivity and self-improvement, mostly. Endless scrolling gave me a goldfish attention span, so
+              hands-on projects are what keep me hooked.
+            </p>
+          </MotionTile>
+
+          <MotionTile {...revealAt(6)} className="lg:col-span-2">
+            <Video className="size-5 text-brand-ink" aria-hidden="true" />
+            <h3 className="mt-4 text-lg font-semibold">Starting to post</h3>
+            <p className="mt-2 text-muted-foreground">
+              I'm getting into making content about tech and AI, mostly as an excuse to meet people across the
+              industry.
+            </p>
+          </MotionTile>
+
+          <MotionTile {...revealAt(7)} className="lg:col-span-6">
+            <dl className="grid grid-cols-2 gap-6 sm:grid-cols-4">
+              {numbers.map((n) => (
+                <div key={n.label} className="flex min-w-0 flex-col-reverse">
+                  <dt className="mt-1 text-sm text-muted-foreground">{n.label}</dt>
+                  <dd className="text-4xl font-bold tracking-tight tabular-nums sm:text-5xl">{n.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </MotionTile>
+        </div>
       </div>
     </section>
   );
-};
-
-export default AboutSection;
+}
